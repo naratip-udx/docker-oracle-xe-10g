@@ -1,17 +1,19 @@
 FROM debian:11
 
 # STEP 1: Set environment variables
+ARG NLS_LANG=AMERICAN_AMERICA.TH8TISASCII
+
 ENV ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
 ENV LD_LIBRARY_PATH=$ORACLE_HOME/lib
 ENV PATH=$ORACLE_HOME/bin:$PATH
 ENV ORACLE_SID=XE
-ENV NLS_LANG=AMERICAN_AMERICA.WE8MSWIN1252
+ENV NLS_LANG=${NLS_LANG}
 
 RUN echo 'export ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server' >> /etc/bash.bashrc && \
     echo 'export LD_LIBRARY_PATH=$ORACLE_HOME/lib' >> /etc/bash.bashrc && \
     echo 'export PATH=$ORACLE_HOME/bin:$PATH' >> /etc/bash.bashrc && \
     echo 'export ORACLE_SID=XE' >> /etc/bash.bashrc && \
-    echo 'export NLS_LANG=AMERICAN_AMERICA.WE8MSWIN1252' >> /etc/bash.bashrc
+    echo 'export NLS_LANG=$NLS_LANG' >> /etc/bash.bashrc
 
 
 # STEP 2: Install dependences
